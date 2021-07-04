@@ -1,4 +1,5 @@
 package tasks;
+
 import org.openqa.selenium.Keys;
 import org.testng.Assert;
 import org.testng.Reporter;
@@ -10,7 +11,7 @@ import pomRepository.TasksPage;
  * @author Savita
  *
  */
-public class TC_01TasksTest extends BaseTest{
+public class TC_02TasksTest extends BaseTest{
 	@Test
 	public void Tasks() throws InterruptedException{
 		TasksPage tasks=new TasksPage(driver);
@@ -25,16 +26,13 @@ public class TC_01TasksTest extends BaseTest{
 		tasks.getProjecttextfield().sendKeys("book",Keys.ENTER);
 		Thread.sleep(7000);
 		tasks.getDescription().sendKeys("it is CRM Project",Keys.ENTER);
-		tasks.getStartbutton().click();
+		tasks.getManualradiobutton().click();			
+		tasks.getSavebutton().click();
 		Assert.assertEquals(driver.getTitle(), "Edit Task | Invoice Ninja","task is not created");
 		Reporter.log("task is successfully created ",true);
+		tasks.getResumebutton().click();
 		tasks.getStopbutton().click();
 		Assert.assertEquals(driver.getTitle(), "Edit Task | Invoice Ninja","task is not updated");
 		Reporter.log("task is successfully updated ",true);
-
-
 	}
-
-
-
 }
